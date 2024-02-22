@@ -1,4 +1,4 @@
-immport pandas as pd
+import pandas as pd
 
 st.set_page_config(page_title= f"{Account} Creative Ad Testing Dash",page_icon="🧑‍🚀",layout="wide")
 
