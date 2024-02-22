@@ -45,7 +45,7 @@ def main_dashboard():
         ngram_start = st.number_input('N-Gram Start', min_value=1, max_value=5, value=1)
     with col2:
         ngram_end = st.number_input('N-Gram End', min_value=1, max_value=5, value=2)
-    col1,_ = st.columns()
+    col1,_ = st.columns(2)
     with col1:
         if st.button('Show Top N-Grams'):
             top_ngrams = get_top_ngrams(data['Search term'], n=10, ngram_range=(ngram_start, ngram_end))
