@@ -20,13 +20,38 @@ def password_protection():
   else:
         main_dashboard()
 
+def get_top_ngrams(corpus, n=None, ngram_range=(1,1)):
+    vec = CountVectorizer(stop_words='english', ngram_range=ngram_range).fit(corpus)
+    bag_of_words = vec.transform(corpus)
+    sum_words = bag_of_words.sum(axis=0) 
+    words_freq = [(word, sum_words[0, idx]) for word, idx in vec.vocabulary_.items()]
+    words_freq = sorted(words_freq, key=lambda x: x[1], reverse=True)
+    return words_freq[:n]
+
 def main_dashboard():
 
     st.markdown(f"<h1 style='text-align: center;'>Search Query Analysis</h1>", unsafe_allow_html=True)
 
     data = pd.read_csv("Search terms report.csv", skiprows=2)
 
-    st.write(data)
+    #st.write(data)
+
+    # N-Gram Analysis
+    st.subheader('Top N-Grams from Search Terms')
+    col1, col2 = st.columns(2)
+    with col1:
+        ngram_start = st.number_input('N-Gram Start', min_value=1, max_value=5, value=1)
+    with col2:
+        ngram_end = st.number_input('N-Gram End', min_value=1, max_value=5, value=2)
+    
+    if st.button('Show Top N-Grams'):
+        top_ngrams = get_top_ngrams(data['Search Term'], n=10, ngram_range=(ngram_start, ngram_end))
+        fig, ax = plt.subplots()
+        ax.barh([x[0] for x in top_ngrams], [x[1] for x in top_ngrams])
+        ax.set_xlabel('Frequency')
+        ax.set_title('Top N-Grams from Search Terms')
+        st.pyplot(fig)
+    
 
 
 if __name__ == '__main__':
