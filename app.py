@@ -1,7 +1,7 @@
 import pandas as pd
 import streamlit as st
 from sklearn.feature_extraction.text import CountVectorizer
-
+import matplotlib.pyplot as plt
 
 st.set_page_config(page_title= f"SQR Dash",page_icon="🧑‍🚀",layout="wide")
 
