@@ -20,7 +20,7 @@ def password_protection():
   else:
       main_dashboard()
 
-  def mainmain_dashboard():
+  def main_dashboard():
 
     st.markdown(f"<h1 style='text-align: center;'>{Account} Search Query Analysis</h1>", unsafe_allow_html=True)
 
