@@ -22,7 +22,7 @@ def password_protection():
 
 def main_dashboard():
 
-    st.markdown(f"<h1 style='text-align: center;'>{Account} Search Query Analysis</h1>", unsafe_allow_html=True)
+    st.markdown(f"<h1 style='text-align: center;'>Search Query Analysis</h1>", unsafe_allow_html=True)
 
     data = pd.read_csv("Search terms report.csv")
 
