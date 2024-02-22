@@ -1,6 +1,6 @@
 import pandas as pd
 
-st.set_page_config(page_title= f"{Account} Creative Ad Testing Dash",page_icon="🧑‍🚀",layout="wide")
+st.set_page_config(page_title= f"SQR Dash",page_icon="🧑‍🚀",layout="wide")
 
 
 def password_protection():
