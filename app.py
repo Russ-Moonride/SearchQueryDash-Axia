@@ -12,7 +12,7 @@ def password_protection():
       password = st.text_input("Enter Password:", type="password")
       
       if st.button("Login"):
-          if password == correct_hashed_password:
+          if password == "SQR:
               st.session_state.authenticated = True
               main_dashboard()
           else:
