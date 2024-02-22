@@ -27,3 +27,7 @@ def password_protection():
     data = pd.read_csv("Search terms report.csv")
 
     st.write(data)
+
+
+if __name__ == '__main__':
+    password_protection()
