@@ -47,13 +47,12 @@ def main_dashboard():
         ngram_end = st.number_input('N-Gram End', min_value=1, max_value=5, value=2)
     col1,_ = st.columns(2)
     with col1:
-        if st.button('Show Top N-Grams'):
-            top_ngrams = get_top_ngrams(data['Search term'], n=10, ngram_range=(ngram_start, ngram_end))
-            fig, ax = plt.subplots()
-            ax.barh([x[0] for x in top_ngrams], [x[1] for x in top_ngrams])
-            ax.set_xlabel('Frequency')
-            ax.set_title('Top N-Grams from Search Terms')
-            st.pyplot(fig)
+        top_ngrams = get_top_ngrams(data['Search term'], n=10, ngram_range=(ngram_start, ngram_end))
+        fig, ax = plt.subplots()
+        ax.barh([x[0] for x in top_ngrams], [x[1] for x in top_ngrams])
+        ax.set_xlabel('Frequency')
+        ax.set_title('Top N-Grams from Search Terms')
+        st.pyplot(fig)
           
     
 
