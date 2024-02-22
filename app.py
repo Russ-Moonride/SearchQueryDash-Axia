@@ -18,7 +18,7 @@ def password_protection():
           else:
               st.error("Incorrect Password. Please try again or contact the administrator.")
   else:
-      main_dashboard()
+        main_dashboard()
 
   def main_dashboard():
 
