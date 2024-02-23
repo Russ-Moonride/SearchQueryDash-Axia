@@ -42,6 +42,7 @@ def main_dashboard():
     xgb_classifier = load('SearchQueryModel1.joblib')
     
     #Change Data Types
+    data = raw_data
     data['Impr.'] = data['Impr.'].str.replace(',','').astype(int)
     data['Interactions'] = data['Interactions'].str.replace(',','').astype(int)
     data['Clicks'] = data['Clicks'].str.replace(',','').astype(int)
@@ -82,7 +83,7 @@ def main_dashboard():
 
     #Pre-process Search Terms
     tfidf_vectorizer = TfidfVectorizer(lowercase=True, stop_words='english', token_pattern='(?u)\\b\\w\\w+\\b', ngram_range=(1, 4))
-    X_tfidf = tfidf_vectorizer.fit_transform(data['Search term'])
+    X_tfidf = tfidf_vectorizer.transform(data['Search term'])
 
     #Make Predictions
     predictions = xgb_classifier.predict(X_tfidf)
