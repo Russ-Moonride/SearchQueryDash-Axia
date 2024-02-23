@@ -81,8 +81,11 @@ def main_dashboard():
         st.write(top_click)
 
     #Pre-process Search Terms
+    tfidf_vectorizer = TfidfVectorizer(lowercase=True, stop_words='english', token_pattern='(?u)\\b\\w\\w+\\b', ngram_range=(1, 4))
+    X_tfidf = tfidf_vectorizer.fit_transform(Unadded_data['Search term'])
 
     #Make Predictions
+    
 
     #Output dataframe
   
