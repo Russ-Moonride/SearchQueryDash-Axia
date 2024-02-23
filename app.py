@@ -49,14 +49,13 @@ def main_dashboard():
     Unadded_data = Unadded_data[~Unadded_data['Search term'].str.contains("Total:")]
   
     # N-Gram Analysis
-    st.subheader('Top N-Grams from Search Terms')
-    col1, col2,_,_ = st.columns(4)
+    col1,col2 = st.columns(2)
     with col1:
-        ngram_start = st.number_input('N-Gram Start', min_value=1, max_value=5, value=3)
-    with col2:
-        ngram_end = st.number_input('N-Gram End', min_value=1, max_value=7, value=5)
-    col3,col4 = st.columns(2)
-    with col3:
+        col3, col4 = st.columns2)
+        with col3:
+            ngram_start = st.number_input('N-Gram Start', min_value=1, max_value=5, value=3)
+        with col4:
+            ngram_end = st.number_input('N-Gram End', min_value=1, max_value=7, value=5)
         top_ngrams = get_top_ngrams(Unadded_data['Search term'], n=10, ngram_range=(ngram_start, ngram_end))
         fig, ax = plt.subplots()
         ax.barh([x[0] for x in top_ngrams], [x[1] for x in top_ngrams])
@@ -64,7 +63,7 @@ def main_dashboard():
         ax.set_title('Top N-Grams from Search Terms')
         st.pyplot(fig)
     
-    with col4:
+    with col2:
         col6, col7 = st.columns(2)
         with col6:
           metric = st.selectbox("Select a metric to sort on:", ("Conversions", "Clicks", "Impressions","Cost"))
