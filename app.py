@@ -42,7 +42,7 @@ def main_dashboard():
     data['Clicks'] = data['Clicks'].str.replace(',','').astype(int)
 
     #Rename Impressions col
-    data.rename(columns = {"Impr.":"Impresssions"}, inplace = True)
+    data.rename(columns = {"Impr.":"Impressions"}, inplace = True)
 
     #Get unadded terms / Filter out totals
     Unadded_data = data[data['Added/Excluded'] != "Added"]
