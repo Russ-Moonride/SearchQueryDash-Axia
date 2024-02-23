@@ -112,7 +112,7 @@ def main_dashboard():
     #Output dataframe
     # Create a DataFrame with the search terms, predictions, and probabilities
     results_df = pd.DataFrame({
-        'Search Term': data['Search term'],
+        'Search Term': Unadded_data['Search term'],
         'Prediction': predictions,
         'Probability': positive_probabilities
     })
