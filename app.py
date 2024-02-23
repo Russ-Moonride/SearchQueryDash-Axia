@@ -95,9 +95,9 @@ def main_dashboard():
     # For probability of the positive class ("Added" class)
     probability = xgb_classifier.predict_proba(X_individual)[:, 1] 
 
-    print("Search Term:", individual_search_term[0])
-    print("Prediction:", prediction[0])  # Adjust if you decode prediction to the original label
-    print("Probability of 'Added':", probability[0])
+    st.write("Search Term:", individual_search_term[0])
+    st.write("Prediction:", prediction[0])  # Adjust if you decode prediction to the original label
+    st.write("Probability of 'Added':", probability[0])
 
 
     #Make Predictions
