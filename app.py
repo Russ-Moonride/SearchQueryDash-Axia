@@ -39,7 +39,7 @@ def main_dashboard():
     raw_data = pd.read_csv("Search terms report.csv", skiprows=2)
 
     #Load the trained model
-    xgb_classifier = load('SearchQueryModel2.joblib')
+    xgb_classifier = load('SearchQueryModel1.joblib')
     
     #Change Data Types
     data = raw_data
