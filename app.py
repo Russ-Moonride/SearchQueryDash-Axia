@@ -107,7 +107,7 @@ def main_dashboard():
     probabilities = xgb_classifier.predict_proba(X_tfidf)
 
     # Assuming the positive class ("Added") is the second column
-    positive_probabilities = probabilities[:, 1]
+    positive_probabilities = probabilities[:, 0]
     
     #Output dataframe
     # Create a DataFrame with the search terms, predictions, and probabilities
