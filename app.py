@@ -117,6 +117,7 @@ def main_dashboard():
         'Probability': positive_probabilities
     })
 
+    st.markdown(f"<h3 style='text-align: center;'>Added Terms Prediction</h3>", unsafe_allow_html=True)
     st.dataframe(results_df.sort_values(by="Probability", ascending=False), width = 1500)
 
 if __name__ == '__main__':
