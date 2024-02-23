@@ -65,8 +65,13 @@ def main_dashboard():
         st.pyplot(fig)
     
     with col4:
-        metric = st.selectbox("Select a metric to sort on:", ("Conversions", "Clicks", "Impressions","Cost"))
-        top_click = Unadded_data.nlargest(20, metric)
+        col6, col7 = st.columns(2)
+        with col6:
+          metric = st.selectbox("Select a metric to sort on:", ("Conversions", "Clicks", "Impressions","Cost"))
+        with col7:
+          quanity = st.number_input('Show top _ Rows:', value = 20)
+      
+        top_click = Unadded_data.nlargest(quanity, metric)
         st.write(top_click)
     
 
