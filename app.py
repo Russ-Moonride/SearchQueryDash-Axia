@@ -57,7 +57,7 @@ def main_dashboard():
         st.pyplot(fig)
     
     with col4:
-        top_click = Unadded_data.nlargest('Impr.', 20)
+        top_click = Unadded_data.nlargest(20, 'Impr.')
         st.write(top_click)
     
 
