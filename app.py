@@ -82,7 +82,7 @@ def main_dashboard():
 
     #Pre-process Search Terms
     tfidf_vectorizer = TfidfVectorizer(lowercase=True, stop_words='english', token_pattern='(?u)\\b\\w\\w+\\b', ngram_range=(1, 4))
-    X_tfidf = tfidf_vectorizer.fit_transform(Unadded_data['Search term'])
+    X_tfidf = tfidf_vectorizer.fit_transform(data['Search term'])
 
     #Make Predictions
     predictions = xgb_classifier.predict(X_tfidf)
@@ -96,7 +96,7 @@ def main_dashboard():
     #Output dataframe
     # Create a DataFrame with the search terms, predictions, and probabilities
     results_df = pd.DataFrame({
-        'Search Term': new_search_terms,
+        'Search Term': data['Search term'],
         'Prediction': predictions,
         'Probability': positive_probabilities
     })
