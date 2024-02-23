@@ -82,9 +82,6 @@ def main_dashboard():
         st.write(top_click)
 
     #Pre-process Search Terms
-    tfidf_vectorizer = TfidfVectorizer(lowercase=True, stop_words='english', token_pattern='(?u)\\b\\w\\w+\\b', ngram_range=(1, 4))
-    # Loading and using the saved vectorizer for new data
-
     tfidf_vectorizer = load('tfidf_vectorizer.joblib')
     X_tfidf = tfidf_vectorizer.transform(data['Search term'])
 
