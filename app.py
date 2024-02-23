@@ -81,26 +81,40 @@ def main_dashboard():
         top_click = Unadded_data.nlargest(quanity, metric)
         st.write(top_click)
 
+    individual_search_term = ["solar panel cost"]
+
+    X_individual = tfidf_vectorizer.transform(individual_search_term)
+
+    # For class label prediction
+    prediction = xgb_classifier.predict(X_individual)
+
+    # For probability of the positive class ("Added" class)
+    probability = xgb_classifier.predict_proba(X_individual)[:, 1] 
+
+    print("Search Term:", individual_search_term[0])
+    print("Prediction:", prediction[0])  # Adjust if you decode prediction to the original label
+    print("Probability of 'Added':", probability[0])
+
     #Pre-process Search Terms
-    tfidf_vectorizer = load('tfidf_vectorizer.joblib')
-    X_tfidf = tfidf_vectorizer.transform(Unadded_data['Search term'])
+    #tfidf_vectorizer = load('tfidf_vectorizer.joblib')
+    #X_tfidf = tfidf_vectorizer.transform(Unadded_data['Search term'])
 
     #Make Predictions
-    predictions = xgb_classifier.predict(X_tfidf)
+    #predictions = xgb_classifier.predict(X_tfidf)
 
     #Get Probabilities
-    probabilities = xgb_classifier.predict_proba(X_tfidf)
+    #probabilities = xgb_classifier.predict_proba(X_tfidf)
 
     # Assuming the positive class ("Added") is the second column
-    positive_probabilities = probabilities[:, 1]
+    #positive_probabilities = probabilities[:, 1]
     
     #Output dataframe
     # Create a DataFrame with the search terms, predictions, and probabilities
-    results_df = pd.DataFrame({
-        'Search Term': data['Search term'],
-        'Prediction': predictions,
-        'Probability': positive_probabilities
-    })
+    #results_df = pd.DataFrame({
+    #    'Search Term': data['Search term'],
+    #    'Prediction': predictions,
+    #    'Probability': positive_probabilities
+    #})
 
 if __name__ == '__main__':
     password_protection()
