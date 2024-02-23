@@ -51,7 +51,7 @@ def main_dashboard():
     # N-Gram Analysis
     col1,col2 = st.columns(2)
     with col1:
-        col3, col4 = st.columns2)
+        col3, col4 = st.columns(2)
         with col3:
             ngram_start = st.number_input('N-Gram Start', min_value=1, max_value=5, value=3)
         with col4:
