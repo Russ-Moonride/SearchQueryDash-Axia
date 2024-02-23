@@ -35,15 +35,16 @@ def main_dashboard():
     st.markdown(f"<h1 style='text-align: center;'>Search Query Analysis</h1>", unsafe_allow_html=True)
 
     data = pd.read_csv("Search terms report.csv", skiprows=2)
-    data = data[data['Search term'].str.contains('Total:')==False]
-    #Change Data Type
+    
+    #Change Data Types
     data['Impr.'] = data['Impr.'].str.replace(',','').astype(int)
     data['Interactions'] = data['Interactions'].str.replace(',','').astype(int)
     data['Clicks'] = data['Clicks'].str.replace(',','').astype(int)
-    
-    Unadded_data = data[data['Added/Excluded'] != "Added"]
-    st.write(Unadded_data)
 
+    #Get unadded terms / Filter out totals
+    Unadded_data = data[data['Added/Excluded'] != "Added"]
+    data = data[data['Search term'].str.contains('Total:')==False]
+  
     # N-Gram Analysis
     st.subheader('Top N-Grams from Search Terms')
     col1, col2,_,_ = st.columns(4)
