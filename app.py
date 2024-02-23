@@ -36,9 +36,10 @@ def main_dashboard():
 
     data = pd.read_csv("Search terms report.csv", skiprows=2)
     st.write(data)
+    data = data[data['Search term'].str.contains('Total:')==False]
   
-    #Unadded_data = data[data['Added/Excluded'].isin(["None"])]
-    #st.write(Unadded_data)
+    Unadded_data = data[data['Added/Excluded'].str.contains("Added")==False]
+    st.write(Unadded_data)
 
     # N-Gram Analysis
     st.subheader('Top N-Grams from Search Terms')
