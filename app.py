@@ -83,7 +83,7 @@ def main_dashboard():
 
     #Pre-process Search Terms
     tfidf_vectorizer = load('tfidf_vectorizer.joblib')
-    X_tfidf = tfidf_vectorizer.transform(data['Search term'])
+    X_tfidf = tfidf_vectorizer.transform(Unadded_data['Search term'])
 
     #Make Predictions
     predictions = xgb_classifier.predict(X_tfidf)
