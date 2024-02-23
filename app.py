@@ -49,9 +49,9 @@ def main_dashboard():
     st.subheader('Top N-Grams from Search Terms')
     col1, col2,_,_ = st.columns(4)
     with col1:
-        ngram_start = st.number_input('N-Gram Start', min_value=1, max_value=5, value=1)
+        ngram_start = st.number_input('N-Gram Start', min_value=1, max_value=5, value=3)
     with col2:
-        ngram_end = st.number_input('N-Gram End', min_value=1, max_value=5, value=2)
+        ngram_end = st.number_input('N-Gram End', min_value=1, max_value=7, value=5)
     col3,col4 = st.columns(2)
     with col3:
         top_ngrams = get_top_ngrams(Unadded_data['Search term'], n=10, ngram_range=(ngram_start, ngram_end))
