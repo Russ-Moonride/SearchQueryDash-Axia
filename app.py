@@ -117,7 +117,7 @@ def main_dashboard():
         'Probability': positive_probabilities
     })
 
-    st.write(results_df.sort_values(by="Probability", ascending=False))
+    st.dataframe(results_df.sort_values(by="Probability", ascending=False), width = 1500)
 
 if __name__ == '__main__':
     password_protection()
