@@ -38,7 +38,7 @@ def main_dashboard():
     data = pd.read_csv("Search terms report.csv", skiprows=2)
 
     #Load the trained model
-    xgb_classifier = load('trained_model.joblib')
+    xgb_classifier = load('SearchQueryModel1.joblib')
     
     #Change Data Types
     data['Impr.'] = data['Impr.'].str.replace(',','').astype(int)
