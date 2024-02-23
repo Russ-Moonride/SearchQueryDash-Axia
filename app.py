@@ -1,8 +1,9 @@
 import pandas as pd
 import streamlit as st
-from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer
 import matplotlib.pyplot as plt
 from joblib import load
+from xgboost import XGBClassifier
 
 st.set_page_config(page_title= f"SQR Dash",page_icon="🧑‍🚀",layout="wide")
 
@@ -78,8 +79,13 @@ def main_dashboard():
       
         top_click = Unadded_data.nlargest(quanity, metric)
         st.write(top_click)
-    
 
+    #Pre-process Search Terms
+
+    #Make Predictions
+
+    #Output dataframe
+  
 
 if __name__ == '__main__':
     password_protection()
