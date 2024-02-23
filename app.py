@@ -43,7 +43,7 @@ def main_dashboard():
 
     #Get unadded terms / Filter out totals
     Unadded_data = data[data['Added/Excluded'] != "Added"]
-    data = data[data['Search term'].str.contains('Total:')==False]
+    Unadded_data = Unadded_data[~Unadded_data['Search term'].str.contains("Total:")]
   
     # N-Gram Analysis
     st.subheader('Top N-Grams from Search Terms')
