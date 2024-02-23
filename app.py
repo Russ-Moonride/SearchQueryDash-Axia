@@ -36,6 +36,10 @@ def main_dashboard():
 
     data = pd.read_csv("Search terms report.csv", skiprows=2)
     data = data[data['Search term'].str.contains('Total:')==False]
+    #Change Data Type
+    data['Impr.'] = data['Impr.'].str.replace(',','').astype(int)
+    data['Interactions'] = data['Interactions'].str.replace(',','').astype(int)
+    data['Clicks'] = data['Clicks'].str.replace(',','').astype(int)
     
     Unadded_data = data[data['Added/Excluded'] != "Added"]
     st.write(Unadded_data)
