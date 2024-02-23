@@ -51,6 +51,7 @@ def main_dashboard():
     # N-Gram Analysis
     col1,col2 = st.columns(2)
     with col1:
+        st.subheader("See Top Phrases & Filter by Length")
         col3, col4 = st.columns(2)
         with col3:
             ngram_start = st.number_input('N-Gram Start', min_value=1, max_value=5, value=3)
@@ -64,6 +65,7 @@ def main_dashboard():
         st.pyplot(fig)
     
     with col2:
+        st.subheader("Sort and Filter on Metrics")
         col6, col7 = st.columns(2)
         with col6:
           metric = st.selectbox("Select a metric to sort on:", ("Conversions", "Clicks", "Impressions","Cost"))
