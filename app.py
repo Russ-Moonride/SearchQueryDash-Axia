@@ -35,7 +35,6 @@ def main_dashboard():
     st.markdown(f"<h1 style='text-align: center;'>Search Query Analysis</h1>", unsafe_allow_html=True)
 
     data = pd.read_csv("Search terms report.csv", skiprows=2)
-    st.write(data)
     data = data[data['Search term'].str.contains('Total:')==False]
   
     Unadded_data = data[data['Added/Excluded'].str.contains("Added")==False]
