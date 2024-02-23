@@ -85,10 +85,10 @@ def main_dashboard():
     X_tfidf = tfidf_vectorizer.fit_transform(Unadded_data['Search term'])
 
     #Make Predictions
-    predictions = xgb_classifier.predict(processed_terms)
+    predictions = xgb_classifier.predict(X_tfidf)
 
     #Get Probabilities
-    probabilities = xgb_classifier.predict_proba(processed_terms)
+    probabilities = xgb_classifier.predict_proba(X_tfidf)
 
     # Assuming the positive class ("Added") is the second column
     positive_probabilities = probabilities[:, 1]
