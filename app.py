@@ -83,21 +83,21 @@ def main_dashboard():
 
     #Pre-process Search Terms
     tfidf_vectorizer = load('tfidf_vectorizer.joblib')
-    #X_tfidf = tfidf_vectorizer.transform(Unadded_data['Search term'])
+    X_tfidf = tfidf_vectorizer.transform(Unadded_data['Search term'])
   
-    individual_search_term = ["solar panel cost"]
+    #individual_search_term = ["solar panel cost"]
 
-    X_individual = tfidf_vectorizer.transform(individual_search_term)
+    #X_individual = tfidf_vectorizer.transform(individual_search_term)
 
     # For class label prediction
-    prediction = xgb_classifier.predict(X_individual)
+    #prediction = xgb_classifier.predict(X_individual)
 
     # For probability of the positive class ("Added" class)
-    probability = xgb_classifier.predict_proba(X_individual)[:, 1] 
+    #probability = xgb_classifier.predict_proba(X_individual)[:, 1] 
 
-    st.write("Search Term:", individual_search_term[0])
-    st.write("Prediction:", prediction[0])  # Adjust if you decode prediction to the original label
-    st.write("Probability of 'Added':", probability[0])
+    #st.write("Search Term:", individual_search_term[0])
+    #st.write("Prediction:", prediction[0])  # Adjust if you decode prediction to the original label
+    #st.write("Probability of 'Added':", probability[0])
 
 
     #Make Predictions
