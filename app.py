@@ -81,6 +81,10 @@ def main_dashboard():
         top_click = Unadded_data.nlargest(quanity, metric)
         st.write(top_click)
 
+    #Pre-process Search Terms
+    tfidf_vectorizer = load('tfidf_vectorizer.joblib')
+    #X_tfidf = tfidf_vectorizer.transform(Unadded_data['Search term'])
+  
     individual_search_term = ["solar panel cost"]
 
     X_individual = tfidf_vectorizer.transform(individual_search_term)
@@ -95,9 +99,6 @@ def main_dashboard():
     print("Prediction:", prediction[0])  # Adjust if you decode prediction to the original label
     print("Probability of 'Added':", probability[0])
 
-    #Pre-process Search Terms
-    #tfidf_vectorizer = load('tfidf_vectorizer.joblib')
-    #X_tfidf = tfidf_vectorizer.transform(Unadded_data['Search term'])
 
     #Make Predictions
     #predictions = xgb_classifier.predict(X_tfidf)
