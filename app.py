@@ -85,10 +85,21 @@ def main_dashboard():
     X_tfidf = tfidf_vectorizer.fit_transform(Unadded_data['Search term'])
 
     #Make Predictions
-    
+    predictions = xgb_classifier.predict(processed_terms)
 
+    #Get Probabilities
+    probabilities = xgb_classifier.predict_proba(processed_terms)
+
+    # Assuming the positive class ("Added") is the second column
+    positive_probabilities = probabilities[:, 1]
+    
     #Output dataframe
-  
+    # Create a DataFrame with the search terms, predictions, and probabilities
+    results_df = pd.DataFrame({
+        'Search Term': new_search_terms,
+        'Prediction': predictions,
+        'Probability': positive_probabilities
+    })
 
 if __name__ == '__main__':
     password_protection()
