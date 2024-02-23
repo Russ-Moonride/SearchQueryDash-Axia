@@ -101,21 +101,23 @@ def main_dashboard():
 
 
     #Make Predictions
-    #predictions = xgb_classifier.predict(X_tfidf)
+    predictions = xgb_classifier.predict(X_tfidf)
 
     #Get Probabilities
-    #probabilities = xgb_classifier.predict_proba(X_tfidf)
+    probabilities = xgb_classifier.predict_proba(X_tfidf)
 
     # Assuming the positive class ("Added") is the second column
-    #positive_probabilities = probabilities[:, 1]
+    positive_probabilities = probabilities[:, 1]
     
     #Output dataframe
     # Create a DataFrame with the search terms, predictions, and probabilities
-    #results_df = pd.DataFrame({
-    #    'Search Term': data['Search term'],
-    #    'Prediction': predictions,
-    #    'Probability': positive_probabilities
-    #})
+    results_df = pd.DataFrame({
+        'Search Term': data['Search term'],
+        'Prediction': predictions,
+        'Probability': positive_probabilities
+    })
+
+    st.write(results_df)
 
 if __name__ == '__main__':
     password_protection()
