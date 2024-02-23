@@ -41,6 +41,9 @@ def main_dashboard():
     data['Interactions'] = data['Interactions'].str.replace(',','').astype(int)
     data['Clicks'] = data['Clicks'].str.replace(',','').astype(int)
 
+    #Rename Impressions col
+    data.rename(columns = {"Impr.":"Impresssions"}, inplace = True)
+
     #Get unadded terms / Filter out totals
     Unadded_data = data[data['Added/Excluded'] != "Added"]
     Unadded_data = Unadded_data[~Unadded_data['Search term'].str.contains("Total:")]
@@ -62,7 +65,8 @@ def main_dashboard():
         st.pyplot(fig)
     
     with col4:
-        top_click = Unadded_data.nlargest(20, 'Impr.')
+        metric = st.selectbox("Select a metric to sort on:", ("Conversions", "Clicks", "Impressions","Cost"))
+        top_click = Unadded_data.nlargest(20, metric)
         st.write(top_click)
     
 
