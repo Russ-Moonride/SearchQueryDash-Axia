@@ -101,7 +101,7 @@ def main_dashboard():
 
 
     #Make Predictions
-    predictions = xgb_classifier.predict(X_tfidf)
+    predictions = xgb_classifier.predict(X_tfidf)  
 
     #Get Probabilities
     probabilities = xgb_classifier.predict_proba(X_tfidf)
@@ -116,6 +116,8 @@ def main_dashboard():
         'Prediction': predictions,
         'Probability': positive_probabilities
     })
+
+    results_df['Prediction'] = results_df['Prediction'].replace({0: 'Possible Add', 1: 'None'})
 
     st.markdown(f"<h3 style='text-align: center;'>Added Terms Prediction</h3>", unsafe_allow_html=True)
     st.dataframe(results_df.sort_values(by="Probability", ascending=False), width = 1500)
