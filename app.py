@@ -119,6 +119,8 @@ def main_dashboard():
 
     results_df['Prediction'] = results_df['Prediction'].replace({0: 'Possible Add', 1: 'None'})
 
+    results_df = results_df.drop_duplicates(keep='last')
+  
     st.markdown(f"<h3 style='text-align: center;'>Added Terms Prediction</h3>", unsafe_allow_html=True)
     st.dataframe(results_df.sort_values(by="Probability", ascending=False), width = 1500)
 
