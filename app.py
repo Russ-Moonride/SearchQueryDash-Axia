@@ -54,32 +54,7 @@ def main_dashboard():
     Unadded_data = data[data['Added/Excluded'] != "Added"]
     Unadded_data = Unadded_data[~Unadded_data['Search term'].str.contains("Total:")]
   
-    # N-Gram Analysis
-    col1,col2 = st.columns(2)
-    with col1:
-        st.subheader("See Top Phrases & Filter by Length")
-        col3, col4 = st.columns(2)
-        with col3:
-            ngram_start = st.number_input('N-Gram Start', min_value=1, max_value=5, value=3)
-        with col4:
-            ngram_end = st.number_input('N-Gram End', min_value=1, max_value=7, value=5)
-        top_ngrams = get_top_ngrams(Unadded_data['Search term'], n=10, ngram_range=(ngram_start, ngram_end))
-        fig, ax = plt.subplots()
-        ax.barh([x[0] for x in top_ngrams], [x[1] for x in top_ngrams])
-        ax.set_xlabel('Frequency')
-        ax.set_title('Top N-Grams from Search Terms')
-        st.pyplot(fig)
-    
-    with col2:
-        st.subheader("Sort and Filter on Metrics")
-        col6, col7 = st.columns(2)
-        with col6:
-          metric = st.selectbox("Select a metric to sort on:", ("Conversions", "Clicks", "Impressions","Cost"))
-        with col7:
-          quanity = st.number_input('Show top _ Rows:', value = 20)
-      
-        top_click = Unadded_data.nlargest(quanity, metric)
-        st.write(top_click)
+   
 
     #Pre-process Search Terms
     tfidf_vectorizer = load('tfidf_vectorizer.joblib')
@@ -120,6 +95,33 @@ def main_dashboard():
     results_df['Prediction'] = results_df['Prediction'].replace({0: 'Possible Add', 1: 'None'})
 
     results_df = results_df.drop_duplicates(keep='last')
+
+     # N-Gram Analysis
+    col1,col2 = st.columns(2)
+    with col1:
+        st.subheader("See Top Phrases & Filter by Length")
+        col3, col4 = st.columns(2)
+        with col3:
+            ngram_start = st.number_input('N-Gram Start', min_value=1, max_value=5, value=3)
+        with col4:
+            ngram_end = st.number_input('N-Gram End', min_value=1, max_value=7, value=5)
+        top_ngrams = get_top_ngrams(Unadded_data['Search term'], n=10, ngram_range=(ngram_start, ngram_end))
+        fig, ax = plt.subplots()
+        ax.barh([x[0] for x in top_ngrams], [x[1] for x in top_ngrams])
+        ax.set_xlabel('Frequency')
+        ax.set_title('Top N-Grams from Search Terms')
+        st.pyplot(fig)
+    
+    with col2:
+        st.subheader("Sort and Filter on Metrics")
+        col6, col7 = st.columns(2)
+        with col6:
+          metric = st.selectbox("Select a metric to sort on:", ("Conversions", "Clicks", "Impressions","Cost"))
+        with col7:
+          quanity = st.number_input('Show top _ Rows:', value = 20)
+      
+        top_click = Unadded_data.nlargest(quanity, metric)
+        st.write(top_click)
   
     st.markdown(f"<h3 style='text-align: center;'>Added Terms Prediction</h3>", unsafe_allow_html=True)
     st.dataframe(results_df.sort_values(by="Probability", ascending=False), width = 1500)
